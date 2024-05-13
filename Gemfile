@@ -29,7 +29,7 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
 
-gem 'devise'
+gem "devise", "~> 4.9"
 
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
@@ -69,4 +69,4 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "acts_as_tenant", "~> 1.0"
+gem 'acts_as_tenant', '~> 1.0.1'
