@@ -1,9 +1,10 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ show edit update destroy ]
+  before_action :authorize_member, only: %i[ show edit update destroy ]
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.all
+    @projects = current_user.projects
   end
 
   # GET /projects/1 or /projects/1.json
@@ -25,6 +26,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        @project.members.create(user: current_user, roles: {admin: true})
         format.html { redirect_to project_url(@project), notice: "Project was successfully created." }
         format.json { render :show, status: :created, location: @project }
       else
@@ -66,5 +68,10 @@ class ProjectsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def project_params
       params.require(:project).permit(:account_id, :name)
+    end
+
+     # Check project member Authorization
+     def authorize_member
+      return redirect_to root_path, alert: 'You are not a member' unless @project.users.include? current_user
     end
 end
