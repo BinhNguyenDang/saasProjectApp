@@ -1,13 +1,60 @@
-<h1> Invite Members</h1>
-
-<%= form_with url: invite_project_members_path do |form| %>
-  <%= form.text_field :email, placeholder: 'Email' %>
-  <%= form.submit 'Invite' %>
-<% end %>
-
-<h1>Members</h1>
-
-<% @member.each do |member| %>
-  <%= member.user.email %>
-  <%= member.roles %>
-<% end %>
+<h2>
+  Project :- <%= @current_project.name %>
+</h2>
+<div class="row">
+  <h2>
+    <span class="badge text-bg-primary m-4 ms-0">
+      Invite Members
+    </span>
+  </h2>
+  <%# Send Invite form only if you are Admin %>
+  <% if current_user.admin> %>
+    <form action="<%= invite_project_members_path%>" method="post">
+      <div class="mb-3 col-md-6">
+        <label>
+          Email id:
+        </label>
+        <input type="email" name="email" class="form-control" placeholder="Please enter email id ...">
+      </div>
+      <button type="submit" class="btn btn-primary">
+        Invite
+      </button>
+    </form>
+  <% else %>
+    <h5>
+      <span class="badge text-bg-secondary">
+        You are not an admin; you can only view members. Only amins can send invitations.
+      </span>
+    </h5>
+  <% end %>
+  <%# Show all members have in Project%>
+  <h2>
+    <span class="badge text-bg-primary m-4 ms-0">
+      Members
+    </span>
+  </h2>
+  <div class="col-md-6">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @member.each do |member| %>
+        <tr>
+          <td><%= member.user.email%></td>
+          <td>
+            <% if member.admin? %>
+              <strong>Admin</strong>
+            <% else %>
+              Editor
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
