@@ -24,5 +24,7 @@ module SaasProjectApp
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.hosts = nil
+
+    Rails.application.routes.default_url_options[:host] = 'http://lvh.me:3000'
   end
 end
