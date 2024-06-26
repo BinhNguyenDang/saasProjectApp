@@ -33,6 +33,9 @@ gem "devise", "~> 4.9"
 
 gem 'devise_invitable', '~> 2.0.0'
 
+# Add bootstrap view for devise
+gem 'devise-bootstrap-views', '~> 1.0'
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
