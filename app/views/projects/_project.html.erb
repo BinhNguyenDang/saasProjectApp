@@ -1,12 +1,16 @@
-<div id="<%= dom_id project %>">
-  <p>
-    <strong>Account:</strong>
-    <%= project.account_id %>
-  </p>
-
-  <p>
-    <strong>Name:</strong>
-    <%= project.name %>
-  </p>
-
+<div id="<%= dom_id project %>" class="card mt-3">
+  <div class="card-body">
+    <p class="card-text">
+      <strong>Account:</strong> <%= project.account_id%>
+    </p>
+    <p class="card-text">
+      <strong>Name:</strong> <%= project.name %>
+    </p>
+    <p class="card-text">
+      <strong>Details:</strong> <%= project.details%>
+    </p>
+    <p class="card-text">
+      <strong>Expected Completion Date: </strong> <%= project.expected_completion_date%>
+    </p>
+  </div>
 </div>
