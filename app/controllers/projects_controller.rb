@@ -73,9 +73,17 @@ class ProjectsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_project
+    # Attempts to find a project by its ID and assigns it to the @project instance variable.
     @project = Project.find(params[:id])
+    # Rescue block for handling the ActiveRecord::RecordNotFound exception.
+    rescue ActiveRecord::RecordNotFound
+      # Captures the project ID from the request parameters.
+      project_id = params[:id]
+      # Sets a flash alert message informing the user that the project with the specified ID was not found.
+      flash[:alert] = "You do not have Project with Project ID #{project_id}."
+      # Redirects the user to the projects index page.
+      redirect_to projects_path
   end
 
   # Only allow a list of trusted parameters through.
