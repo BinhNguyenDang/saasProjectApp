@@ -31,4 +31,7 @@ class Project < ApplicationRecord
       errors.add(:base, "Free plan can only have one project")
     end
   end
+
+  # TODO 
+  # Add project show limit if plan is free
 end
