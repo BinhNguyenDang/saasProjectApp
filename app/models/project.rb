@@ -11,7 +11,7 @@ class Project < ApplicationRecord
   
   # Ensures that the project name is unique within the scope of its account,
   # but only if the project's name has been changed.
-  validates_uniqueness_of :name, if: :name_changed?
+  validates_uniqueness_of :name, scope: :account_id, if: :name_changed? # scope use for mantain uniqueness only in tenant
   
   # Custom validation to ensure accounts with a free plan can only create one project.
   validate :free_plan_can_only_have_one_project, on: :create
