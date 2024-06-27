@@ -41,7 +41,7 @@ class MembersController < ApplicationController
     private
 
     def set_project
-      @project = Project.find(params[:project_id])
+      @current_project = Project.find(params[:project_id])
     end
 end
   

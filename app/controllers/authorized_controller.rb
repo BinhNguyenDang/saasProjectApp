@@ -7,7 +7,12 @@ class AuthorizedController < ApplicationController
   
     # Finds the project using the project_id parameter and sets it to @current_project
     def set_current_project
-      @current_project = Project.find(params[:project_id])
+      membership = current_user.members.find_by(project_id: params[:project_id])
+      @current_project = membership.project if membership
+      unless @current_project
+        flash[:alert] = 'You are nor a memeber of this project'
+        redirect_to projects_path
+      end
     end
   
     # Checks if the current user is a member of the current project
