@@ -29,6 +29,7 @@ class ProjectsController < ApplicationController
   # Create a new project
   def create
     @project = Project.new(project_params)
+    @project.plan = 'free'
 
     respond_to do |format|
       if @project.save
@@ -60,7 +61,9 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1 or /projects/1.json
   # Delete a project
   def destroy
-    @project.destroy!
+    @project.members.destroy_all # Delete associated members
+
+    @project.destroy
 
     respond_to do |format|
       format.html { redirect_to projects_url, notice: "Project was successfully destroyed." }
@@ -77,7 +80,7 @@ class ProjectsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def project_params
-    params.require(:project).permit(:account_id, :name)
+    params.require(:project).permit(:account_id, :name, :account_id, :name, :details, :expected_completion_date)
   end
 
   # Check project member authorization

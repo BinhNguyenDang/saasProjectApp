@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
     # Set the current project before any action
-    before_action :set_current_project
+    before_action :set_project
   
     # GET /projects/:project_id/members
     # Retrieve all members of the current project
@@ -36,6 +36,12 @@ class MembersController < ApplicationController
       else  
         redirect_to project_members_path(@current_project), alert: "You are not authorized to invite members!"
       end
+    end
+
+    private
+
+    def set_project
+      @project = Project.find(params[:project_id])
     end
 end
   
