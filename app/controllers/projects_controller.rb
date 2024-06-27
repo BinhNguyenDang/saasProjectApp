@@ -11,7 +11,6 @@ class ProjectsController < ApplicationController
     rescue ActsAsTenant::Errors::NoTenantSet
       flash[:alert] = "You do not have a tenant. Please set a tenant before access."
       redirect_to root_path
-    end
   end
 
   # GET /projects/1 or /projects/1.json
