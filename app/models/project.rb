@@ -27,11 +27,14 @@ class Project < ApplicationRecord
   # Custom validation method to enforce the rule that free plan accounts
   # can only have one project.
   def free_plan_can_only_have_one_project
-    if account.plan == 'free' && account.projects.count >= 1
+    if account.plan == 'free' && account.projects.count >= 1 && !premium_plan?
       errors.add(:base, "Free plan can only have one project")
     end
   end
 
   # TODO 
   # Add project show limit if plan is free
+  def premium_plan?
+    account.plan == 'premium'
+  end
 end
