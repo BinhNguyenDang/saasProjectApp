@@ -3,29 +3,36 @@ class ArtifactsController < ApplicationController
 
   # GET /artifacts or /artifacts.json
   def index
-    @artifacts = Artifact.all
+    @project = Project.find(params[:project_id])
+    @artifact = @project.artifacts
   end
 
   # GET /artifacts/1 or /artifacts/1.json
   def show
+    @project = Project.find(params[:project_id])
+    @artifact = Artifact.find(params[:id])
   end
 
   # GET /artifacts/new
   def new
+    @project = Project.find(params[:project_id])
     @artifact = Artifact.new
   end
 
   # GET /artifacts/1/edit
   def edit
+    @artifact = Artifact.find(params[:id])
+    @project = @artifact.project
   end
 
   # POST /artifacts or /artifacts.json
   def create
-    @artifact = Artifact.new(artifact_params)
+    @project = Artifact.find(params[:project_id])
+    @artifact = @project.artifacts.new(artifact_params)
 
     respond_to do |format|
       if @artifact.save
-        format.html { redirect_to artifact_url(@artifact), notice: "Artifact was successfully created." }
+        format.html { redirect_to project_artifacts_url(@artifact), notice: "Artifact was successfully created." }
         format.json { render :show, status: :created, location: @artifact }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,6 +43,9 @@ class ArtifactsController < ApplicationController
 
   # PATCH/PUT /artifacts/1 or /artifacts/1.json
   def update
+    @artifact = Artifact.find(params[:id])
+    @project = @artifact.project
+
     respond_to do |format|
       if @artifact.update(artifact_params)
         format.html { redirect_to artifact_url(@artifact), notice: "Artifact was successfully updated." }
@@ -52,7 +62,7 @@ class ArtifactsController < ApplicationController
     @artifact.destroy!
 
     respond_to do |format|
-      format.html { redirect_to artifacts_url, notice: "Artifact was successfully destroyed." }
+      format.html { redirect_to project_artifacts_url, notice: "Artifact was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,6 +75,6 @@ class ArtifactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def artifact_params
-      params.require(:artifact).permit(:name, :key, :project_id)
+      params.require(:artifact).permit(:name, :project_id, :upload )
     end
 end
