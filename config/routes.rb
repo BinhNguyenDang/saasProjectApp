@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  resources :artifacts
+  
   resources :projects do
     resources :members do
       collection do
         post :invite
       end
     end
+    resources :artifacts
   end
   resources :accounts
   devise_for :users
