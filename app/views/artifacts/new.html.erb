@@ -1,9 +1,9 @@
 <h1>New artifact</h1>
 
-<%= render "form", artifact: @artifact %>
+<%= render "form", project: @project, artifact: @artifact %>
 
 <br>
 
 <div>
-  <%= link_to "Back to artifacts", artifacts_path %>
+  <%= link_to "Back to artifacts", project_artifacts_path(@project), class: 'btn btn-secondary' %>
 </div>

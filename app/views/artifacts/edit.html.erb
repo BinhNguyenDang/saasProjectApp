@@ -1,10 +1,43 @@
 <h1>Editing artifact</h1>
 
-<%= render "form", artifact: @artifact %>
+<div class="row">
+  <div class="col-md-6">
+    <%= form_with(model: [@project, @artifact], url: project_artifact_path(@project, @artifact), method: "patch") do |form| %>
+      <% if @artifact.errors.any? %>
+        <div style="color: red;">
+          <h2>
+            <%= pluralize(@artifact.errors.count, "error") %> prohibited this artifact from being saved:
+          </h2>
+          <ul>
+            <% @artifact.errors.full_messages.each do |error_message| %>
+            <li>
+              <%= error_message %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group mt-3">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="form-group mt-3">
+        <%= form.label :upload, value: 'File to uplaod' %>
+        <%= form.file_field :upload, class: 'form-control' %>
+      </div> 
+      <%= form.hidden_field :project_id %>
+      <div class="form-group mt-3">
+        <%= form.submit 'Save Artifacts', class: 'btn btn-success' %>
+      </div>
+      <%# <%= link_to 'Cancle', project_path(project_id: current_project_id, id: @artifact.project_id), class: 'btn btn-secondary btn-xs' %>
+    <% end %>
+  </div>
+</div>
 
 <br>
 
 <div>
-  <%= link_to "Show this artifact", @artifact %> |
-  <%= link_to "Back to artifacts", artifacts_path %>
+  <%= link_to "Show this artifact", project_artifact_path(@project, @artifact), class: 'btn btn-primary' %>
+  <%= link_to "Back to artifacts", project_artifacts_path, class: 'btn btn-secondary ms-3'%>
 </div>
