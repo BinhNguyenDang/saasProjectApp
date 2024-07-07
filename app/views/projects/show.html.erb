@@ -13,5 +13,8 @@
       </div>
 
       <%= link_to "Members", project_members_path(@project), class: "btn btn-info btn-block" %>
+      <%= link_to "Artifacts", project_artifacts_path, class: "btn btn-info btn-block" %>
     </div>
   </div>
+
+<%= render 'artifacts/list', locals: { project: @project, artifact: @artifact }%>
