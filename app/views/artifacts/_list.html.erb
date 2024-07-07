@@ -13,16 +13,18 @@
                 </tr>
             </thead>
             <tbody>
-                <% @artifacts.each do |artifact| %>
-                    <tr>
-                        <td><%= artifact.name %></td>
-                        <td><%= artifact.key %></td>
-                        <td>
-                            <%= link_to 'Show', project_artifact_path(@project, artifact), class: 'btn btn-secondary' %>
-                            <%= link_to 'Edit', edit_project_artifact_path(@project, artifact), class: 'btn btn-primary ms-1' %>
-                            <%= link_to 'Destroy Artifact', project_artifact_path(artifact.project, artifact), class: 'btn btn-danger ms-1', style: "display: inline-block;", data: {turbo_method: :delete, "turbo-confirm": "Are you sure you want to delete this Artifact? "} %>
-                        </td>
-                    </tr>
+                <% if @artifacts.present? %>
+                    <% @artifacts.each do |artifact| %>
+                        <tr>
+                            <td><%= artifact.name %></td>
+                            <td><%= artifact.key %></td>
+                            <td>
+                                <%= link_to 'Show', project_artifact_path(@project, artifact), class: 'btn btn-secondary' %>
+                                <%= link_to 'Edit', edit_project_artifact_path(@project, artifact), class: 'btn btn-primary ms-1' %>
+                                <%= link_to 'Destroy Artifact', project_artifact_path(artifact.project, artifact), class: 'btn btn-danger ms-1', style: "display: inline-block;", data: {turbo_method: :delete, "turbo-confirm": "Are you sure you want to delete this Artifact? "} %>
+                            </td>
+                        </tr>
+                    <% end %>
                 <% end %>
             </tbody>
         </table>

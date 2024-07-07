@@ -23,14 +23,14 @@
         <%= form.text_field :name, class: 'form-control' %>
       </div>
       <div class="form-group mt-3">
-        <%= form.label :upload, value: 'File to uplaod' %>
+        <%= form.label :upload, value: 'File to upload' %>
         <%= form.file_field :upload, class: 'form-control' %>
       </div> 
       <%= form.hidden_field :project_id %>
       <div class="form-group mt-3">
         <%= form.submit 'Save Artifacts', class: 'btn btn-success' %>
       </div>
-      <%# <%= link_to 'Cancle', project_path(project_id: current_project_id, id: @artifact.project_id), class: 'btn btn-secondary btn-xs' %>
+      <% <%= link_to 'Cancel', project_path(project_id: current_project_id, id: @artifact.project_id), class: 'btn btn-secondary btn-xs' %>
     <% end %>
   </div>
 </div>

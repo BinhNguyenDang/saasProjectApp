@@ -24,6 +24,8 @@ class Project < ApplicationRecord
   # through the members join table.
   has_many :users, through: :members
 
+  has_many :artifacts, dependent: :destroy
+
   # Custom validation method to enforce the rule that free plan accounts
   # can only have one project.
   def free_plan_can_only_have_one_project

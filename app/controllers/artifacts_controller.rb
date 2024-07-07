@@ -4,7 +4,7 @@ class ArtifactsController < ApplicationController
   # GET /artifacts or /artifacts.json
   def index
     @project = Project.find(params[:project_id])
-    @artifact = @project.artifacts
+    @artifacts = @project.artifacts
   end
 
   # GET /artifacts/1 or /artifacts/1.json
@@ -16,7 +16,7 @@ class ArtifactsController < ApplicationController
   # GET /artifacts/new
   def new
     @project = Project.find(params[:project_id])
-    @artifact = Artifact.new
+    @artifact = @project.artifacts.new
   end
 
   # GET /artifacts/1/edit
@@ -27,12 +27,12 @@ class ArtifactsController < ApplicationController
 
   # POST /artifacts or /artifacts.json
   def create
-    @project = Artifact.find(params[:project_id])
+    @project = Project.find(params[:project_id])
     @artifact = @project.artifacts.new(artifact_params)
 
     respond_to do |format|
       if @artifact.save
-        format.html { redirect_to project_artifacts_url(@artifact), notice: "Artifact was successfully created." }
+        format.html { redirect_to project_artifacts_url(@project), notice: "Artifact was successfully created." }
         format.json { render :show, status: :created, location: @artifact }
       else
         format.html { render :new, status: :unprocessable_entity }
