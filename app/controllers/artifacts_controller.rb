@@ -9,8 +9,8 @@ class ArtifactsController < ApplicationController
 
   # GET /artifacts/1 or /artifacts/1.json
   def show
-    @project = Project.find(params[:project_id])
     @artifact = Artifact.find(params[:id])
+    @project = @artifact.project
   end
 
   # GET /artifacts/new
@@ -22,7 +22,7 @@ class ArtifactsController < ApplicationController
   # GET /artifacts/1/edit
   def edit
     @artifact = Artifact.find(params[:id])
-    @project = @artifact.project
+    @project = Project.find(params[:project_id])
   end
 
   # POST /artifacts or /artifacts.json
