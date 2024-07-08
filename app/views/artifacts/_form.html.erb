@@ -18,11 +18,11 @@
       </div>
       
       <div class="form-group mt-3">
-        <%= form.label :upload, value: 'File to upload' %>
-        <%= form.file_field :upload, class: 'form-control'%>
+        <%= form.label :file, value: 'File to upload' %>
+        <%= form.file_field :file, class: 'form-control'%>
       </div>
 
-      <%= form.hidden_field :project_id%>
+      <%= form.hidden_field :project_id %>
       <div class="form-group mt-3">
         <%= form.submit 'Save Artifacts', class: 'btn btn-primary' %>
       </div>

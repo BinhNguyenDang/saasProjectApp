@@ -49,7 +49,7 @@ class ArtifactsController < ApplicationController
 
     respond_to do |format|
       if @artifact.update(artifact_params)
-        format.html { redirect_to artifact_url(@artifact), notice: "Artifact was successfully updated." }
+        format.html { redirect_to project_artifact_url(@artifact), notice: "Artifact was successfully updated." }
         format.json { render :show, status: :ok, location: @artifact }
       else
         format.html { render :edit, status: :unprocessable_entity }
