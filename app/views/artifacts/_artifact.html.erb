@@ -13,25 +13,40 @@
     <strong>File:</strong>
   </p>
 
-    <% if @file.attached? %>
-      <% if @file.content_type.start_with?('image') %>
-        <%= image_tag @file %>
-      <% elsif @file.content_type.start_with?('video') %>
-        <video width="80%" height="80%" controls>
-          <source src="<%= rails_blob_path(@file)%>" type="<%= @file.content_type %>">
-          Your browser does not support the video tag.
-        </video>
-        <br>
-        <%= link_to "Download Video", rails_blob_path(@file, disposition: "attachment"), class: "btn btn-info m-3 ms-0"%>
-      <% elsif @file.content_type == 'application/pdf' %>
-        <iframe src="<%= rails_blob_path(@file, disposition: "inline") %>" width="100%" height="400"></iframe>
-        <%= link_to "Download PDF 💾", rails_blob_path(@file, disposition: "attachment"), class: "btn btn-info m-3 ms-0"%>
-        <%= link_to "Show Full PDF🔎", artifact.file, class: "btn btn-info m-3 ms-0" %>
+     <% if @file.attached? %>
+    <% if @file.content_type.start_with?('image') %>
+      <%= image_tag @file, width: "100%", height: "100%" %>
+    <% elsif @file.content_type.start_with?('video') %>
+      <video width="80%" height="80%" controls>
+        <source src="<%= rails_blob_path(@file) %>" type="<%= @file.content_type %>">
+        Your browser does not support the video tag.
+      </video>
+      <br><%= link_to "Download Video 💾", rails_blob_path(@file, disposition: "attachment"), class: "btn btn-info m-3 ms-0" %>
+    <% elsif @file.content_type.start_with?('audio') %>
+      <audio controls>
+        <source src="<%= rails_blob_path(@file) %>" type="<%= @file.content_type %>">
+        Your browser does not support the audio element.
+      </audio>
+      <br><%= link_to "Download Audio 🎵", rails_blob_path(@file, disposition: "attachment"), class: "btn btn-info m-3 ms-0" %>
+    <% elsif @file.content_type == 'application/pdf' %>
+      <iframe src="<%= rails_blob_path(@file, disposition: "inline") %>" width="100%" height="400"></iframe>
+      <%= link_to "Download PDF 💾", rails_blob_path(@file, disposition: "attachment"), class: "btn btn-info m-3 ms-0"%>
+      <%= link_to "Show Full PDF🔎", artifact.file, class: "btn btn-info m-3 ms-0" %>
+    <% elsif @file.content_type == 'application/vnd.ms-powerpoint' || @file.content_type == 'application/vnd.openxmlformats-officedocument.presentationml.presentation' || @file.content_type == 'application/vnd.ms-powerpoint.presentation.macroenabled.12' %>
+      <%= link_to "View PowerPoint Presentation 📊", rails_blob_path(@file, disposition: "inline"), class: "btn btn-info m-3 ms-0" %>
+      <%= link_to "Download PowerPoint 💾", rails_blob_path(@file, disposition: "attachment"), class: "btn btn-info m-3 ms-0" %>
+    <% elsif @file.content_type == 'application/vnd.oasis.opendocument.spreadsheet' || @file.content_type == 'application/vnd.ms-excel' || @file.content_type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || @file.content_type == 'application/vnd.ms-excel.sheet.macroenabled.12' %>
+      <%= link_to "View Spreadsheet 📊", rails_blob_path(@file, disposition: "inline"), class: "btn btn-info m-3 ms-0" %>
+      <%= link_to "Download Spreadsheet 💾", rails_blob_path(@file, disposition: "attachment"), class: "btn btn-info m-3 ms-0" %>
+    <% else %>
+      <% if @file.blob.filename.present? %>
+        <%= link_to "Download File 💾", rails_blob_path(@file, disposition: "attachment"), class: "btn btn-info m-3 ms-0" %>
       <% else %>
         <p>Unsupported file type</p>
       <% end %>
-    <% else %>
-      <p> No file attached</p>
     <% end %>
+  <% else %>
+    <p>No file attached</p>
+  <% end %>
 
 </div>
