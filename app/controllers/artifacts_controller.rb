@@ -11,6 +11,7 @@ class ArtifactsController < ApplicationController
   def show
     @artifact = Artifact.find(params[:id])
     @project = @artifact.project
+    @file = @artifact.file
   end
 
   # GET /artifacts/new
@@ -75,6 +76,6 @@ class ArtifactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def artifact_params
-      params.require(:artifact).permit(:name, :project_id, :upload )
+      params.require(:artifact).permit(:name, :project_id, :file)
     end
 end
