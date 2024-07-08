@@ -1,3 +1,7 @@
+<script language="javascript">
+  Stripe.setPublishableKey("<%= Rails.application.credentials.stripe[:publishable_key] %>");
+</script>
+
 <h1><%= t('.sign_up') %></h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
