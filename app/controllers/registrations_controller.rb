@@ -61,7 +61,13 @@ class RegistrationsController < Devise::RegistrationsController
     end
   
     def create_default_account(user)
-      account = Account.create!(name: 'Default', subdomain: 'default', domain: 'default.com', creator: user)
+      account = Account.create!(
+        name: params[:account][:name],
+        subdomain: params[:account][:subdomain],
+        domain: params[:account][:domain],
+        creator: user,
+        plan: params[:account][:plan]
+        )
       user.reload # Reload user to ensure association is loaded
       account
     end
