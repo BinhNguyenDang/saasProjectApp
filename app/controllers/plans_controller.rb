@@ -41,7 +41,7 @@ class PlansController < ApplicationController
   private
 
   def set_account
-    @account = current_user.accounts.first
+    @account = current_user.accounts.find(params[:id])
   end
 
   def account_params

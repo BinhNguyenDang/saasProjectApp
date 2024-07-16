@@ -2,7 +2,7 @@
   Stripe.setPublishableKey("<%= Rails.application.credentials.stripe[:publishable_key] %>");
 </script>
 
-<%= form_for @account, url: update_plan_path, html: { class: "#{class_name_for_account_form(@account)}"} do |f| %>
+<%= form_for @account, url: update_plan_path(@account), html: { class: "#{class_name_for_account_form(@account)}"} do |f| %>
 
   <div class="form-group col-md-5 ">
     <%= f.label :name, 'Organization'%>
