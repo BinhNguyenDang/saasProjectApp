@@ -23,7 +23,7 @@ class PlansController < ApplicationController
               redirect_to accounts_path and return
             end
           end
-          format.html { redirect_to edit_plan_path, notice: "Plan was successfully updated"}
+          format.html { redirect_to accounts_path, notice: "Plan was successfully updated"}
         else
           format.html { render :edit }
         end
