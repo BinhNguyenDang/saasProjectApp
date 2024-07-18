@@ -14,8 +14,6 @@
 
   <body>
     <div class="container">
-      <!-- show Messages and Alert -->
-      <%= render 'layouts/messages' %>
         <!-- Render Navigation Bar -->
       <%= render 'layouts/navigation' %>
 
@@ -25,5 +23,8 @@
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
+    
+      <%= render 'layouts/footer' %>
+    
   </body>
 </html>
