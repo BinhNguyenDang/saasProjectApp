@@ -16,15 +16,13 @@
     <div class="container">
       <!-- show Messages and Alert -->
       <%= render 'layouts/messages' %>
-      <% if signed_in? %>
-        <%= link_to 'Accounts', accounts_path %>
-        <%= current_user.email %>
-        <%= link_to "Edit Account", edit_user_registration_path %>
-        <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: "false" } %>
-      <% else %>
-        <%= link_to "Log in", new_user_session_path %>
-        <%= link_to "Register", new_user_registration_path %>
-      <% end %>
+        <!-- Render Navigation Bar -->
+      <%= render 'layouts/navigation' %>
+
+    <div class="container">
+
+      <!-- show Messages and Alert -->
+      <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
   </body>
