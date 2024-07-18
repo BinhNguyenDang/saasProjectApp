@@ -22,7 +22,7 @@
         <ul class="navbar-nav mi-auto">
           <%if current_user %> 
             <li class="nav-item user-name me-2 mt-2">
-              <%= current_user.email %>
+              <strong><%= current_user.email %></strong>
             </li>
             <li class="nav-item me-2">
               <%= button_to("Log Out", destroy_user_session_path, method: :delete, class: 'btn btn-danger') %>
