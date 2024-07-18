@@ -1,11 +1,13 @@
 class MembersController < ApplicationController
     # Set the current project before any action
     before_action :set_project
+    before_action :find_project
+    before_action :find_member, only: [:destroy]
   
     # GET /projects/:project_id/members
     # Retrieve all members of the current project
     def index
-      @members = @current_project.members
+      @members = @project.members
     end
   
     # POST /projects/:project_id/members/invite
@@ -38,10 +40,29 @@ class MembersController < ApplicationController
       end
     end
 
+    def destroy 
+       # Check if the current user is an admin and is not deleting themselves
+      if current_user.admin? && current_user != @member.user
+        @member.destroy
+        flash[:notice] = "Member successfully removed from the project."
+      else
+        flash[:alert] = "You do not have permission to remove this member."
+      end
+      redirect_to project_members_path(@current_project)
+    end
+
     private
 
     def set_project
-      @current_project = Project.find(params[:project_id])
+      @project = Project.find(params[:project_id])
+    end
+
+    def find_project
+      @project = Project.find(params[:project_id])
+    end
+
+    def find_member
+      @member = @project.members.find(params[:id])
     end
 end
   

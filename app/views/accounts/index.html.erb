@@ -1,14 +1,28 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Accounts</h1>
 
-<div id="accounts">
-  <% @accounts.each do |account| %>
-    <%= render account %>
-    <p>
-      <%= link_to "Show this account", account %>
-    </p>
-  <% end %>
-</div>
+<table class="table table-bordered table-hover mt-2">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Subdomain</th>
+      <th>Domain</th>
+      <th>Plan</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @accounts.each do |account| %>
+      <tr>
+        <td><%= account.name %></td>
+        <td><%= account.subdomain %></td>
+        <td><%= account.domain %></td>
+        <td><%= account.plan %></td>
+        <td>
+          <%= link_to "Show", account, class: "btn btn-primary btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= link_to "New account", new_account_path %>
+<%= link_to "New account", new_account_path, class: "btn btn-success" %>

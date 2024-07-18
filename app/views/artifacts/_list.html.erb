@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-9">
-        <%- model_class = Artifact -%>
+        <% model_class = Artifact %>
         <h3 class="mt-3">
             Artifacts
         </h3>
@@ -8,7 +8,7 @@
             <thead>
                 <tr>
                     <th><%= model_class.human_attribute_name(:name) %></th>
-                    <th><%= model_class.human_attribute_name(:key) %></th>
+                    <th><%= model_class.human_attribute_name(:file) %></th>
                     <th><%=t '.actions', default: t("helpers.actions") %></th>
                 </tr>
             </thead>
@@ -17,7 +17,13 @@
                     <% @artifacts.each do |artifact| %>
                         <tr>
                             <td><%= artifact.name %></td>
-                            <td><%= artifact.key %></td>
+                            <td>
+                                <% if artifact.file.attached?%>
+                                    <%= link_to artifact.file.filename, artifact.file %>
+                                <% else %>
+                                    <p>No file attached</p>
+                                <% end %>
+                            </td>
                             <td>
                                 <%= link_to 'Show', project_artifact_path(@project, artifact), class: 'btn btn-secondary' %>
                                 <%= link_to 'Edit', edit_project_artifact_path(@project, artifact), class: 'btn btn-primary ms-1' %>

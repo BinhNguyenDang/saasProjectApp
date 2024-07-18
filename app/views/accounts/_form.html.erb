@@ -1,6 +1,6 @@
-<%= form_with(model: account) do |form| %>
+<%= form_with(model: account, class: "row g-3") do |form| %>
   <% if account.errors.any? %>
-    <div style="color: red">
+    <div class = "col-md-6" style="color: red">
       <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
 
       <ul>
@@ -11,22 +11,31 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= form.label :name, style: "display: block", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+  
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= form.label :subdomain, style: "display: block", class: "form-label" %>
+      <%= form.text_field :subdomain, class: "form-control" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :subdomain, style: "display: block" %>
-    <%= form.text_field :subdomain %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= form.label :domain, style: "display: block", class: "form-label"  %>
+      <%= form.text_field :domain, class: "form-control" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :domain, style: "display: block" %>
-    <%= form.text_field :domain %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= form.submit "Submit", class: "btn btn-success m-3 ms-0" %>
+    </div>
   </div>
 <% end %>

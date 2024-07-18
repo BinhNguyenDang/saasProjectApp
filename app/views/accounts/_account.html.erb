@@ -1,22 +1,23 @@
-<div id="<%= dom_id account %>">
-  <p>
-    <strong>Name:</strong>
-    <%= account.name %>
-  </p>
+<div id="<%= dom_id account %>" class="card mt-3">
+  <div class="card-body">
+     <p class="card-text">
+        <strong>Name:</strong>
+        <%= account.name %>
+      </p>
 
-  <p>
-    <strong>Subdomain:</strong>
-    <%= account.subdomain %>
-  </p>
+      <p class="card-text">
+        <strong>Subdomain:</strong>
+        <%= account.subdomain %>
+      </p>
 
-  <p>
-    <strong>Domain:</strong>
-    <%= account.domain %>
-  </p>
+      <p class="card-text">
+        <strong>Domain:</strong>
+        <%= account.domain %>
+      </p>
 
-  <p>
-    <strong>Plan:</strong>
-    <%= account.plan %>
-  </p>
-
+      <p class="card-text">
+        <strong>Plan:</strong>
+        <%= account.plan %>
+      </p>
+    </div>
 </div>

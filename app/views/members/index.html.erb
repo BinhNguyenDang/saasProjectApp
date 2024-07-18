@@ -41,9 +41,11 @@
               <% end %>
             </td>
             <% if current_user.admin? && current_user != member.user %>
-            <td>
-              <%= link_to "Delete", project_member_path(@current_project, member), class: "btn btn-danger btn-sm", data: { turbo_method: :delete, "turbo-confirm": "Are you sure you want to delete this Project?" } %>
-            </td>
+              <td>
+                <%= link_to "Delete", project_member_path(@current_project, member), class: "btn btn-danger btn-sm", data: { turbo_method: :delete, "turbo-confirm": "Are you sure you want to delete this Project?" } %>
+              </td>
+            <% else %>
+              <td>Admin</td>
             <% end %>
           </tr>
         <% end %>

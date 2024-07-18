@@ -12,6 +12,7 @@ class ArtifactsController < ApplicationController
     @artifact = Artifact.find(params[:id])
     @project = @artifact.project
     @file = @artifact.file
+    # @current_user = current_user.members.find_by(project_id: @project.id)
   end
 
   # GET /artifacts/new

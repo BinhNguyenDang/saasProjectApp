@@ -20,9 +20,11 @@
         <td><%= project.details %></td>
         <td><%= project.expected_completion_date %></td>
         <td>
-          <%= link_to t('.edit', default: t("helpers.links.edit")), edit_project_path(project), class: 'btn btn-secondary btn-xs' %>
           <%= link_to 'Show Project', project_path(project), class: 'btn btn-secondary btn-xs' %>
-          <%= link_to "Destroy Project", project_path(project), class: "btn btn-xs btn-danger ", data: { turbo_method: :delete, "turbo-confirm": "Are you sure you want to delete this Project?" } %>
+          <% if @current_member&.admin? %>
+            <%= link_to t('.edit', default: t("helpers.links.edit")), edit_project_path(project), class: 'btn btn-secondary btn-xs' %>
+            <%= link_to "Destroy Project", project_path(project), class: "btn btn-xs btn-danger ", data: { turbo_method: :delete, "turbo-confirm": "Are you sure you want to delete this Project?" } %>
+          <% end %>
         </td>
       </tr>
     <% end %>

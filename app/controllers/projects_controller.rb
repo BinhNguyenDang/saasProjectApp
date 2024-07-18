@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @artifacts = @project.artifacts
+    # @current_user = current_user.members.find_by(project_id: @project.id)
   end
 
   # GET /projects/new

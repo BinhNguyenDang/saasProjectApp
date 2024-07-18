@@ -1,11 +1,15 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @account %>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6">
+      <%= render @account %>
+    </div>
+</div>
 
 <div>
-  <%= link_to "Edit this account", edit_account_path(@account) %> |
-  <%= link_to "Back to accounts", accounts_path %>
-
-  <%= button_to "Destroy this account", @account, method: :delete %>
-  <%= link_to "Edit Plan", edit_plan_path, class: "btn btn-primary" %>
+  <%= link_to "Edit this account", edit_account_path(@account), class: "btn btn-primary btn-block m-2 ms-0" %>
+  <%= link_to "Back to accounts", accounts_path, class: "btn btn-secondary btn-block m-2 " %>
+<br>
+  <%= link_to "Destroy this account", @account, class: "btn btn-danger btn-block mb-2", style: "display: inline-block;", data: { turbo_method: :delete, "turbo-confirm": "Are you sure you want to delete this Account?" } %>
 </div>
+
+ <%= link_to "Edit Plan", edit_plan_path, class: "btn btn-info" %>
